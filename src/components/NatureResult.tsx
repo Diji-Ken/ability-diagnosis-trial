@@ -12,6 +12,10 @@ interface NatureResultProps {
   onNext: () => void;
 }
 
+function getAnimal60ImagePath(number: number): string {
+  return `/images/animals/60/${String(number).padStart(2, '0')}.webp`;
+}
+
 export function NatureResult({
   animalResult,
   numerologyResult,
@@ -35,9 +39,11 @@ export function NatureResult({
       {/* Animal Result */}
       <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 mb-4">
         <div className="text-center mb-4">
-          <div className="text-6xl mb-3">
-            {getAnimalEmoji(animalResult.animal)}
-          </div>
+          <img
+            src={getAnimal60ImagePath(animalResult.number)}
+            alt={animalResult.character}
+            className="w-28 h-28 mx-auto rounded-2xl object-cover mb-3 shadow-md border-2 border-orange-200"
+          />
           <h3 className="text-xl font-bold text-gray-800">
             {animalResult.character}
           </h3>
@@ -175,22 +181,4 @@ export function NatureResult({
       </p>
     </div>
   );
-}
-
-function getAnimalEmoji(animal: string): string {
-  const emojiMap: Record<string, string> = {
-    "\u30C1\u30FC\u30BF": "\uD83D\uDC06",
-    "\u3072\u3064\u3058": "\uD83D\uDC0F",
-    "\u30DA\u30AC\u30B5\u30B9": "\uD83E\uDD84",
-    "\u30BE\u30A6": "\uD83D\uDC18",
-    "\u30E9\u30A4\u30AA\u30F3": "\uD83E\uDD81",
-    "\u3053\u3058\u304B": "\uD83E\uDD8C",
-    "\u305F\u306C\u304D": "\uD83E\uDD9D",
-    "\u30B3\u30A2\u30E9": "\uD83D\uDC28",
-    "\u9ED2\u3072\u3087\u3046": "\uD83D\uDC08\u200D\u2B1B",
-    "\u733F": "\uD83D\uDC35",
-    "\u72FC": "\uD83D\uDC3A",
-    "\u864E": "\uD83D\uDC2F",
-  };
-  return emojiMap[animal] || "\u2728";
 }
