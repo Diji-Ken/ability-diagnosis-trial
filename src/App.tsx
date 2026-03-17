@@ -110,22 +110,6 @@ function App() {
           )}
       </main>
 
-      {/* Footer */}
-      <footer className="border-t border-gray-100 bg-white/50">
-        <div className="max-w-2xl mx-auto px-4 py-4 text-center">
-          <p className="text-gray-400 text-xs">
-            {"ABILITY JOB \u8A3A\u65AD \u304A\u8A66\u3057\u7248"}
-          </p>
-          <a
-            href="https://ability-diagnosis.vercel.app"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-orange-500 text-xs hover:text-orange-600 transition-colors"
-          >
-            {"\u672C\u683C\u7248\u306F\u3053\u3061\u3089 \u2192"}
-          </a>
-        </div>
-      </footer>
     </div>
   );
 }

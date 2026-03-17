@@ -12,7 +12,6 @@ import {
   Briefcase,
   ChevronRight,
   RotateCcw,
-  ExternalLink,
 } from "lucide-react";
 import { Button } from "@/components/Button";
 
@@ -297,25 +296,6 @@ export function JobResult({
             </div>
           );
         })()}
-      </div>
-
-      {/* CTA: Full Version */}
-      <div className="bg-gradient-to-r from-orange-500 to-orange-400 rounded-2xl p-6 mb-4 text-center text-white">
-        <h3 className="font-bold text-lg mb-2">
-          {"\u672C\u683C\u7248\u3067\u3082\u3063\u3068\u8A73\u3057\u304F\uFF01"}
-        </h3>
-        <p className="text-orange-100 text-sm mb-4">
-          {"\u672C\u683C\u7248\u3067\u306F\u3001\u8A3A\u65AD\u7D50\u679C\u306E\u4FDD\u5B58\u30FB\u5171\u6709\u3001\u8A73\u7D30\u306A\u30ED\u30FC\u30C9\u30DE\u30C3\u30D7\u306A\u3069\u304C\u5229\u7528\u3067\u304D\u307E\u3059\u3002"}
-        </p>
-        <a
-          href="https://ability-diagnosis.vercel.app"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 bg-white text-orange-600 font-bold px-6 py-3 rounded-xl hover:bg-orange-50 transition-colors"
-        >
-          {"\u672C\u683C\u7248\u3092\u4F7F\u3046"}
-          <ExternalLink className="w-4 h-4" />
-        </a>
       </div>
 
       {/* Reset */}
