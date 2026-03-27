@@ -29,7 +29,7 @@ export function BirthdayInput({ onSubmit }: BirthdayInputProps) {
         <img
           src="/images/hero.png"
           alt="Animal Characters"
-          className="relative w-40 h-40 md:w-48 md:h-48 object-contain mix-blend-multiply"
+          className="relative w-40 h-40 md:w-48 md:h-48 object-contain drop-shadow-md"
         />
         <h2 className="text-2xl md:text-3xl font-bold text-gray-800 mt-4 mb-2">
           {"あなたの性質を診断"}
