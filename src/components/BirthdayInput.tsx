@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { Button } from "@/components/Button";
-import { Calendar } from "lucide-react";
 
 interface BirthdayInputProps {
   onSubmit: (year: number, month: number, day: number) => void;
@@ -23,25 +22,32 @@ export function BirthdayInput({ onSubmit }: BirthdayInputProps) {
 
   return (
     <div className="animate-fade-in-up">
-      <div className="flex items-center justify-center gap-3 mb-6">
-        <Calendar className="w-8 h-8 text-orange-500" />
-        <h2 className="text-2xl md:text-3xl font-bold text-gray-800">
-          {"STEP 1: \u6027\u8CEA\u8A3A\u65AD"}
-        </h2>
+      {/* Hero Image */}
+      <div className="flex justify-center mb-6">
+        <img
+          src="/images/hero.png"
+          alt="Animal Characters"
+          className="w-48 h-48 md:w-56 md:h-56 object-contain drop-shadow-lg"
+        />
       </div>
 
-      <p className="text-gray-500 text-center mb-8">
-        {"\u751F\u5E74\u6708\u65E5\u3092\u5165\u529B\u3057\u3066\u304F\u3060\u3055\u3044\u3002"}
-        <br />
-        {"\u3042\u306A\u305F\u306E\u751F\u307E\u308C\u6301\u3063\u305F\u6027\u8CEA\u3092\u8A3A\u65AD\u3057\u307E\u3059\u3002"}
-      </p>
+      <div className="text-center mb-6">
+        <h2 className="text-2xl md:text-3xl font-bold text-gray-800 mb-2">
+          {"あなたの性質を診断"}
+        </h2>
+        <p className="text-gray-500 text-sm">
+          {"生年月日を入力してください。"}
+          <br />
+          {"あなたの生まれ持った性質を診断します。"}
+        </p>
+      </div>
 
       <form onSubmit={handleSubmit} className="max-w-sm mx-auto">
         <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 mb-6">
           <div className="flex gap-3 items-end">
             <div className="flex-1">
               <label className="block text-gray-500 text-xs mb-1">
-                {"\u5E74"}
+                {"年"}
               </label>
               <select
                 value={year}
@@ -60,7 +66,7 @@ export function BirthdayInput({ onSubmit }: BirthdayInputProps) {
             </div>
             <div className="flex-1">
               <label className="block text-gray-500 text-xs mb-1">
-                {"\u6708"}
+                {"月"}
               </label>
               <select
                 value={month}
@@ -76,7 +82,7 @@ export function BirthdayInput({ onSubmit }: BirthdayInputProps) {
             </div>
             <div className="flex-1">
               <label className="block text-gray-500 text-xs mb-1">
-                {"\u65E5"}
+                {"日"}
               </label>
               <select
                 value={day}
@@ -99,7 +105,7 @@ export function BirthdayInput({ onSubmit }: BirthdayInputProps) {
           className="w-full disabled:opacity-40 disabled:cursor-not-allowed"
           size="lg"
         >
-          {"\u8A3A\u65AD\u3059\u308B"}
+          {"診断する"}
         </Button>
       </form>
     </div>

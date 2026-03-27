@@ -3,13 +3,13 @@ import type { FiveAnimalsResult } from "@/lib/fiveAnimals";
 import { GROUP_DESCRIPTIONS } from "@/lib/diagnosis/animal";
 import { FiveAnimalsCard } from "@/components/FiveAnimalsCard";
 import { Button } from "@/components/Button";
-import { Sparkles, Star, ArrowRight, Briefcase, TrendingUp } from "lucide-react";
+import { Sparkles, Star, RotateCcw, Briefcase, TrendingUp } from "lucide-react";
 
 interface NatureResultProps {
   animalResult: AnimalResult;
   numerologyResult: NumerologyResult;
   fiveAnimalsResult?: FiveAnimalsResult | null;
-  onNext: () => void;
+  onReset: () => void;
 }
 
 function getAnimal60ImagePath(number: number): string {
@@ -20,7 +20,7 @@ export function NatureResult({
   animalResult,
   numerologyResult,
   fiveAnimalsResult,
-  onNext,
+  onReset,
 }: NatureResultProps) {
   const groupInfo = GROUP_DESCRIPTIONS[animalResult.group];
 
@@ -29,10 +29,10 @@ export function NatureResult({
       <div className="text-center mb-6">
         <Sparkles className="w-8 h-8 text-orange-500 mx-auto mb-3" />
         <h2 className="text-2xl font-bold text-gray-800 mb-2">
-          {"\u3042\u306A\u305F\u306E\u751F\u307E\u308C\u6301\u3063\u305F\u6027\u8CEA"}
+          {"あなたの生まれ持った性質"}
         </h2>
         <p className="text-gray-500 text-sm">
-          {"\u500B\u6027\u5FC3\u7406\u5B66 \u00D7 \u6570\u79D8\u8853\u306E\u7D50\u679C"}
+          {"個性心理学 × 数秘術の結果"}
         </p>
       </div>
 
@@ -72,7 +72,7 @@ export function NatureResult({
           <div className="bg-orange-50 rounded-xl p-3 mb-4">
             <h4 className="text-orange-600 text-sm font-bold mb-1 flex items-center gap-1.5">
               <Briefcase className="w-3.5 h-3.5" />
-              {"\u4ED5\u4E8B\u306E\u30B9\u30BF\u30A4\u30EB"}
+              {"仕事のスタイル"}
             </h4>
             <p className="text-gray-700 text-xs leading-relaxed">
               {animalResult.workStyle}
@@ -85,7 +85,7 @@ export function NatureResult({
           <div className="bg-green-50 rounded-xl p-3 mb-4">
             <h4 className="text-green-600 text-sm font-bold mb-1 flex items-center gap-1.5">
               <TrendingUp className="w-3.5 h-3.5" />
-              {"\u6210\u9577\u306E\u30D2\u30F3\u30C8"}
+              {"成長のヒント"}
             </h4>
             <p className="text-gray-700 text-xs leading-relaxed">
               {animalResult.growthAdvice}
@@ -94,7 +94,7 @@ export function NatureResult({
         )}
 
         <div className="mb-3">
-          <h4 className="text-orange-600 text-sm font-bold mb-2">{"\u5F37\u307F"}</h4>
+          <h4 className="text-orange-600 text-sm font-bold mb-2">{"強み"}</h4>
           <div className="flex flex-wrap gap-2">
             {animalResult.strengths.map((s) => (
               <span
@@ -109,7 +109,7 @@ export function NatureResult({
 
         <div>
           <h4 className="text-gray-500 text-sm font-bold mb-2">
-            {"\u30AD\u30E3\u30EA\u30A2\u9069\u6027"}
+            {"キャリア適性"}
           </h4>
           <div className="flex flex-wrap gap-2">
             {animalResult.careerHints.map((h) => (
@@ -141,10 +141,10 @@ export function NatureResult({
           </div>
           <div>
             <h3 className="text-lg font-bold text-gray-800">
-              {"\u30E9\u30A4\u30D5\u30D1\u30B9\u30CA\u30F3\u30D0\u30FC"} {numerologyResult.lifePath}
+              {"ライフパスナンバー"} {numerologyResult.lifePath}
             </h3>
             <p className="text-purple-600 text-sm font-bold">
-              {"\u300C"}{numerologyResult.name}{"\u300D"}
+              {"「"}{numerologyResult.name}{"」"}
             </p>
           </div>
         </div>
@@ -155,7 +155,7 @@ export function NatureResult({
 
         <div>
           <h4 className="text-gray-500 text-sm font-bold mb-2">
-            {"\u30AD\u30E3\u30EA\u30A2\u7279\u6027"}
+            {"キャリア特性"}
           </h4>
           <ul className="space-y-1">
             {numerologyResult.careerTraits.map((trait) => (
@@ -171,14 +171,10 @@ export function NatureResult({
         </div>
       </div>
 
-      {/* Next Step */}
-      <Button onClick={onNext} className="w-full" size="lg">
-        {"\u30B9\u30AD\u30EB\u8A3A\u65AD\u3078\u9032\u3080"} <ArrowRight className="inline w-5 h-5 ml-1" />
+      {/* Reset */}
+      <Button onClick={onReset} className="w-full" size="lg" variant="secondary">
+        <RotateCcw className="inline w-4 h-4 mr-1" /> {"もう一度診断する"}
       </Button>
-
-      <p className="text-gray-400 text-xs text-center mt-3">
-        {"\u30B9\u30AD\u30EB\u3092\u5165\u529B\u3059\u308B\u3068\u3001\u3042\u306A\u305F\u306E\u30B8\u30E7\u30D6\u304C\u5224\u660E\u3057\u307E\u3059"}
-      </p>
     </div>
   );
 }
