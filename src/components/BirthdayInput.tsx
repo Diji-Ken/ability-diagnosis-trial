@@ -22,23 +22,22 @@ export function BirthdayInput({ onSubmit }: BirthdayInputProps) {
 
   return (
     <div className="animate-fade-in-up">
-      {/* Hero Image */}
-      <div className="flex justify-center mb-6">
+      {/* Hero Section */}
+      <div className="relative flex flex-col items-center mb-8">
+        {/* Soft glow behind image */}
+        <div className="absolute top-4 w-40 h-40 md:w-48 md:h-48 bg-orange-200/40 rounded-full blur-3xl" />
         <img
           src="/images/hero.png"
           alt="Animal Characters"
-          className="w-48 h-48 md:w-56 md:h-56 object-contain drop-shadow-lg"
+          className="relative w-40 h-40 md:w-48 md:h-48 object-contain mix-blend-multiply"
         />
-      </div>
-
-      <div className="text-center mb-6">
-        <h2 className="text-2xl md:text-3xl font-bold text-gray-800 mb-2">
+        <h2 className="text-2xl md:text-3xl font-bold text-gray-800 mt-4 mb-2">
           {"あなたの性質を診断"}
         </h2>
-        <p className="text-gray-500 text-sm">
-          {"生年月日を入力してください。"}
+        <p className="text-gray-500 text-sm text-center leading-relaxed">
+          {"生年月日を入力するだけで"}
           <br />
-          {"あなたの生まれ持った性質を診断します。"}
+          {"あなたの生まれ持った性質がわかります"}
         </p>
       </div>
 
