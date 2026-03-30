@@ -26,16 +26,11 @@ function App() {
         <div className="max-w-2xl mx-auto px-4 py-3 flex items-center justify-between">
           <div className="flex items-center gap-2">
             <div className="w-8 h-8 bg-gradient-to-br from-orange-500 to-orange-400 rounded-lg flex items-center justify-center text-white font-black text-sm">
-              A
+              5
             </div>
-            <div>
-              <h1 className="text-sm font-bold text-gray-800 leading-tight">
-                ABILITY JOB
-              </h1>
-              <span className="text-[10px] text-orange-500 font-medium">
-                {"お試し版"}
-              </span>
-            </div>
+            <h1 className="text-sm font-bold text-gray-800">
+              {"5アニマル診断"}
+            </h1>
           </div>
           {state.animalResult && (
             <button
