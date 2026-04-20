@@ -14,6 +14,15 @@ const POSITION_DESCRIPTIONS: Record<string, string> = {
   hidden: "\u89AA\u3057\u3044\u4EBA\u306B\u898B\u305B\u308B\u7D20\u9854",
 };
 
+// グリッドセル用の短いラベル（幅を揃えるため「キャラ」を外す）
+const SHORT_LABELS: Record<string, string> = {
+  essence: "\u672C\u8CEA",
+  surface: "\u8868\u9762",
+  hope: "\u5E0C\u671B",
+  decision: "\u610F\u601D\u6C7A\u5B9A",
+  hidden: "\u96A0\u308C",
+};
+
 function getImagePath(animal: AnimalName | null): string {
   if (!animal) return "";
   const fileName = animalImageMap[animal];
@@ -39,15 +48,6 @@ export function FiveAnimalsCard({ result }: FiveAnimalsCardProps) {
         <p className="text-gray-500 text-xs">
           {"\u751F\u5E74\u6708\u65E5\u304B\u3089\u5C0E\u304B\u308C\u305F5\u3064\u306E\u52D5\u7269\u30AD\u30E3\u30E9"}
         </p>
-      </div>
-
-      {/* 60 Classification Label */}
-      <div className="text-center mb-5 bg-orange-50 rounded-xl p-3">
-        <span className="text-gray-500 text-xs">60{"\u5206\u985E"}</span>
-        <div className="text-orange-600 font-bold text-base mt-0.5">
-          {"\u300C"}{result.baseLabel60}{"\u300D"}
-        </div>
-        <span className="text-gray-400 text-xs">No.{result.baseNumber}</span>
       </div>
 
       {/* Five Animals Grid */}
@@ -82,14 +82,14 @@ export function FiveAnimalsCard({ result }: FiveAnimalsCardProps) {
                   ?
                 </div>
               )}
-              <div className="text-gray-800 text-xs font-bold">
+              <div className="text-gray-800 text-xs font-bold whitespace-nowrap">
                 {animal || "?"}
               </div>
               <div
-                className="text-[10px] font-bold mt-1"
+                className="text-[10px] font-bold mt-1 whitespace-nowrap"
                 style={{ color: colors.bg }}
               >
-                {colors.label}
+                {SHORT_LABELS[key]}
               </div>
             </div>
           );
@@ -104,10 +104,10 @@ export function FiveAnimalsCard({ result }: FiveAnimalsCardProps) {
           return (
             <div key={key} className="flex items-start gap-2 text-xs">
               <span
-                className="font-bold shrink-0 w-20 text-right"
+                className="font-bold shrink-0 w-16 text-right whitespace-nowrap"
                 style={{ color: colors.bg }}
               >
-                {colors.label}
+                {SHORT_LABELS[key]}
               </span>
               <span className="text-gray-500">
                 {animal} - {POSITION_DESCRIPTIONS[key]}

@@ -1,23 +1,40 @@
+import { useState, useCallback } from "react";
 import { useDiagnosis } from "@/hooks/useDiagnosis";
 import { computeFiveAnimalsFromDate } from "@/lib/fiveAnimals";
 import { BirthdayInput } from "@/components/BirthdayInput";
 import { NatureResult } from "@/components/NatureResult";
+import { ProcessingAnimation } from "@/components/ProcessingAnimation";
 
 function App() {
-  const {
-    state,
-    submitBirthday,
-    reset,
-  } = useDiagnosis();
+  const { state, submitBirthday, reset } = useDiagnosis();
+  const [processing, setProcessing] = useState(false);
 
-  const fiveAnimalsResult =
-    state.birthday
-      ? computeFiveAnimalsFromDate(
-          state.birthday.year,
-          state.birthday.month,
-          state.birthday.day
-        )
-      : null;
+  const fiveAnimalsResult = state.birthday
+    ? computeFiveAnimalsFromDate(
+        state.birthday.year,
+        state.birthday.month,
+        state.birthday.day
+      )
+    : null;
+
+  const handleBirthdaySubmit = useCallback(
+    (year: number, month: number, day: number) => {
+      setProcessing(true);
+      submitBirthday(year, month, day);
+    },
+    [submitBirthday]
+  );
+
+  const handleProcessingComplete = useCallback(() => {
+    setProcessing(false);
+  }, []);
+
+  const handleReset = useCallback(() => {
+    setProcessing(false);
+    reset();
+  }, [reset]);
+
+  const showResult = !!state.animalResult && !processing;
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-orange-50 via-white to-orange-50">
@@ -32,9 +49,9 @@ function App() {
               {"5アニマル診断"}
             </h1>
           </div>
-          {state.animalResult && (
+          {showResult && (
             <button
-              onClick={reset}
+              onClick={handleReset}
               className="text-xs text-gray-400 hover:text-orange-500 transition-colors cursor-pointer"
             >
               {"リセット"}
@@ -46,17 +63,22 @@ function App() {
       {/* Content */}
       <main className="max-w-2xl mx-auto px-4 py-6 pb-12">
         {/* Birthday Input */}
-        {!state.animalResult && (
-          <BirthdayInput onSubmit={submitBirthday} />
+        {!state.animalResult && !processing && (
+          <BirthdayInput onSubmit={handleBirthdaySubmit} />
+        )}
+
+        {/* Processing */}
+        {processing && (
+          <ProcessingAnimation onComplete={handleProcessingComplete} />
         )}
 
         {/* Nature Result */}
-        {state.animalResult && state.numerologyResult && (
+        {showResult && state.numerologyResult && (
           <NatureResult
-            animalResult={state.animalResult}
+            animalResult={state.animalResult!}
             numerologyResult={state.numerologyResult}
             fiveAnimalsResult={fiveAnimalsResult}
-            onReset={reset}
+            onReset={handleReset}
           />
         )}
       </main>

@@ -2,8 +2,17 @@ import type { AnimalResult, NumerologyResult } from "@/types/diagnosis";
 import type { FiveAnimalsResult } from "@/lib/fiveAnimals";
 import { GROUP_DESCRIPTIONS } from "@/lib/diagnosis/animal";
 import { FiveAnimalsCard } from "@/components/FiveAnimalsCard";
-import { Button } from "@/components/Button";
-import { Sparkles, Star, RotateCcw, Briefcase, TrendingUp } from "lucide-react";
+import {
+  Sparkles,
+  Star,
+  Briefcase,
+  TrendingUp,
+  Lock,
+  MessageCircle,
+} from "lucide-react";
+
+// TODO: 正式な LINE URL が決まったら差し替え
+const LINE_URL = "https://lin.ee/xxxxxxx";
 
 interface NatureResultProps {
   animalResult: AnimalResult;
@@ -13,19 +22,22 @@ interface NatureResultProps {
 }
 
 function getAnimal60ImagePath(number: number): string {
-  return `/images/animals/60/${String(number).padStart(2, '0')}.webp`;
+  return `/images/animals/60/${String(number).padStart(2, "0")}.webp`;
 }
 
 export function NatureResult({
   animalResult,
   numerologyResult,
   fiveAnimalsResult,
-  onReset,
 }: NatureResultProps) {
   const groupInfo = GROUP_DESCRIPTIONS[animalResult.group];
 
+  const handleLineClick = () => {
+    window.open(LINE_URL, "_blank", "noopener,noreferrer");
+  };
+
   return (
-    <div className="animate-fade-in-up max-w-lg mx-auto">
+    <div className="animate-fade-in-up max-w-lg mx-auto pb-24">
       <div className="text-center mb-6">
         <Sparkles className="w-8 h-8 text-orange-500 mx-auto mb-3" />
         <h2 className="text-2xl font-bold text-gray-800 mb-2">
@@ -62,10 +74,24 @@ export function NatureResult({
           </p>
         </div>
 
-        {/* Detailed Personality */}
-        <p className="text-gray-700 text-sm leading-relaxed mb-4">
-          {animalResult.detailedPersonality || animalResult.personality}
-        </p>
+        {/* Detailed Personality — ロック */}
+        <div className="relative mb-4">
+          <p className="text-gray-700 text-sm leading-relaxed select-none blur-md">
+            {animalResult.detailedPersonality || animalResult.personality}
+          </p>
+          <button
+            type="button"
+            onClick={handleLineClick}
+            className="absolute inset-0 flex flex-col items-center justify-center gap-1.5 rounded-xl bg-gradient-to-b from-white/70 via-white/88 to-white/95"
+          >
+            <span className="flex h-9 w-9 items-center justify-center rounded-full bg-gradient-to-br from-orange-500 to-orange-600 shadow">
+              <Lock className="h-4 w-4 text-white" />
+            </span>
+            <span className="text-xs font-bold text-gray-700">
+              LINEで解説を読む
+            </span>
+          </button>
+        </div>
 
         {/* Work Style */}
         {animalResult.workStyle && (
@@ -144,7 +170,9 @@ export function NatureResult({
               {"ライフパスナンバー"} {numerologyResult.lifePath}
             </h3>
             <p className="text-purple-600 text-sm font-bold">
-              {"「"}{numerologyResult.name}{"」"}
+              {"「"}
+              {numerologyResult.name}
+              {"」"}
             </p>
           </div>
         </div>
@@ -171,10 +199,33 @@ export function NatureResult({
         </div>
       </div>
 
-      {/* Reset */}
-      <Button onClick={onReset} className="w-full" size="lg" variant="secondary">
-        <RotateCcw className="inline w-4 h-4 mr-1" /> {"もう一度診断する"}
-      </Button>
+      {/* LINE誘導ティーザー（クリック可能） */}
+      <button
+        type="button"
+        onClick={handleLineClick}
+        className="w-full rounded-2xl bg-orange-50/60 p-4 text-center border border-orange-200/70 hover:bg-orange-50 hover:border-orange-300 transition-colors active:scale-[0.99]"
+      >
+        <p className="text-sm font-bold text-gray-800">
+          {"🎁 続きはLINEで受け取れます"}
+        </p>
+        <p className="mt-1 text-xs text-gray-500">
+          {"より詳しい解説をご覧ください"}
+        </p>
+      </button>
+
+      {/* Sticky bottom CTA */}
+      <div className="fixed inset-x-0 bottom-0 z-50 border-t border-orange-200/60 bg-white/95 px-4 py-3 shadow-[0_-8px_24px_-8px_rgba(234,88,12,0.2)] backdrop-blur-md">
+        <div className="mx-auto max-w-lg">
+          <button
+            type="button"
+            onClick={handleLineClick}
+            className="flex w-full items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-orange-500 via-orange-500 to-orange-600 py-3.5 text-sm font-bold text-white shadow-lg shadow-orange-500/30 transition-all hover:shadow-xl active:scale-[0.98]"
+          >
+            <MessageCircle className="h-4 w-4" />
+            {"続きはこちら"}
+          </button>
+        </div>
+      </div>
     </div>
   );
 }
