@@ -7,12 +7,11 @@ import {
   Star,
   Briefcase,
   TrendingUp,
-  Lock,
   MessageCircle,
 } from "lucide-react";
 
-// TODO: 正式な LINE URL が決まったら差し替え
-const LINE_URL = "https://lin.ee/xxxxxxx";
+const LINE_URL =
+  "https://u.digitool-lab.com/line/open/2bmP2HaVjbMK?mtid=Ls2BfkGWClt4";
 
 interface NatureResultProps {
   animalResult: AnimalResult;
@@ -72,25 +71,6 @@ export function NatureResult({
           <p className="text-gray-500 text-xs mt-1">
             {groupInfo.description}
           </p>
-        </div>
-
-        {/* Detailed Personality — ロック */}
-        <div className="relative mb-4">
-          <p className="text-gray-700 text-sm leading-relaxed select-none blur-md">
-            {animalResult.detailedPersonality || animalResult.personality}
-          </p>
-          <button
-            type="button"
-            onClick={handleLineClick}
-            className="absolute inset-0 flex flex-col items-center justify-center gap-1.5 rounded-xl bg-gradient-to-b from-white/70 via-white/88 to-white/95"
-          >
-            <span className="flex h-9 w-9 items-center justify-center rounded-full bg-gradient-to-br from-orange-500 to-orange-600 shadow">
-              <Lock className="h-4 w-4 text-white" />
-            </span>
-            <span className="text-xs font-bold text-gray-700">
-              LINEで解説を読む
-            </span>
-          </button>
         </div>
 
         {/* Work Style */}
@@ -206,10 +186,10 @@ export function NatureResult({
         className="w-full rounded-2xl bg-orange-50/60 p-4 text-center border border-orange-200/70 hover:bg-orange-50 hover:border-orange-300 transition-colors active:scale-[0.99]"
       >
         <p className="text-sm font-bold text-gray-800">
-          {"🎁 続きはLINEで受け取れます"}
+          {"LINEで最新情報を受け取れます"}
         </p>
         <p className="mt-1 text-xs text-gray-500">
-          {"より詳しい解説をご覧ください"}
+          {"リリース情報や追加コンテンツをお知らせします"}
         </p>
       </button>
 
@@ -222,7 +202,7 @@ export function NatureResult({
             className="flex w-full items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-orange-500 via-orange-500 to-orange-600 py-3.5 text-sm font-bold text-white shadow-lg shadow-orange-500/30 transition-all hover:shadow-xl active:scale-[0.98]"
           >
             <MessageCircle className="h-4 w-4" />
-            {"続きはこちら"}
+            {"LINEで最新情報をいち早く受け取る"}
           </button>
         </div>
       </div>
