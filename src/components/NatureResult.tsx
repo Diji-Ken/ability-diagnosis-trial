@@ -11,7 +11,7 @@ import {
 } from "lucide-react";
 
 const LINE_URL =
-  "https://u.digitool-lab.com/line/open/2bmP2HaVjbMK?mtid=Ls2BfkGWClt4";
+  "https://sb.depre-totem.com/line/open/p5JFBAoGKqDI?ftid=etPRUboDcJJg";
 
 interface NatureResultProps {
   animalResult: AnimalResult;
